@@ -32,7 +32,7 @@ $figures = array(
 echo "figureSelected= $figureSelectedId<br>
                                      <br>";
 ?>
-<table id="table1" border="1" cellpadding="0" cellspacing="0">
+<table id="table1" border="1">
   <?php for ($j = 1; $j <= 8; $j++) : ?>
     <tr>
       <?php for ($i = 1; $i <= 8; $i++) : ?>

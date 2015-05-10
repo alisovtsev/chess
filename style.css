@@ -1,6 +1,6 @@
 #table1 td, img{
-    width:100px;
-    height:100px;
+    width:50px;
+    height:50px;
 }
 .ramkavokrugfiguri {
     background: blue;
@@ -9,3 +9,36 @@ a div {
     width:100%;
     height:100%;
 }
+
+.grey {
+    background: grey;
+}
+h1 {
+    color:green;
+}
+
+
+#table1 {
+    align: center;
+    border: #B9B7B4 6px solid;
+    margin:auto;
+    width: auto;
+    background-color: white;
+    border-spacing: 0;
+}
+
+
+
+
+/*
+#table1 tbody tr td {
+    background: #fc0;  Цвет фона
+    border: 1px solid #333; Граница вокруг ячеек
+    padding: 5px;  Поля в ячейках
+}
+
+#table1 td {
+    background: #fc0;
+border: 1px solid #333;
+padding: 5px;
+    }  */
