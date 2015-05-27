@@ -1,42 +1,24 @@
 <?php
-session_start();
-$figuresDefault = array(
-    1 => array(
-        'img' => 'img/ladyablack.png',
-        'x' => 1,
-        'y' => 1,
-    ),
-    2 => array(
-        'img' => 'img/ferzwhite.png',
-        'x' => 3,
-        'y' => 1,
-    )
-);
-if (empty($_SESSION['figureSelectedId'])) {
-    $_SESSION['figureSelectedId'] = false;
-}
-$pu='img/pustaya.png';
+session_start();//говорим серверу, что мы планируем использовать механизм сессий
+require_once 'functions.php';//подключаем наши функции
+$figuresDefault = getFigureDefaults();
 
-$action = !empty($_GET['action']) ? $_GET['action'] : false;
-$figureSelectedId = !empty($_GET['figureSelectedId']) ? $_GET['figureSelectedId'] : $_SESSION['figureSelectedId'];
-$clickX = !empty($_GET['x']) ? $_GET['x'] : 1;
-$clickY = !empty($_GET['y']) ? $_GET['y'] : 1;
-$figures = !empty($_SESSION['figures']) ? $_SESSION['figures'] : $figuresDefault;
 
-if ($figureSelectedId) {
-    if ($action == 'move') {
-        $figures[$figureSelectedId]['x'] = $clickX;
+if ($figureSelectedId) {//если у нас выбрана какая-то фигура
+    if ($action == 'move') {//если действие перемещение(move), то задаем фигуре новые координаты
+        $figures[$figureSelectedId]['x'] = $clickX;//сохраняем координату x=$clickX для фигуры с id=$figureSelectedId
         $figures[$figureSelectedId]['y'] = $clickY;
-        $_SESSION['figures'] = $figures;
-        header("Location: /");
-        exit;
+        $_SESSION['figures'] = $figures;//сохраняем данные в сессии
+        header("Location: /");//перенаправляем нас на дефолтную страницу для сброса параметров и извлечения новых значений из сессии
+        exit;//выходим из текущего скрипта
     }
-    if ($action == 'select') {
-        $_SESSION['figureSelectedId'] = $figureSelectedId;
+    if ($action == 'select') {//если действие выбор(select), то задаем id выбранной фигуры
+        $_SESSION['figureSelectedId'] = $figureSelectedId;//сохраняем данные в сессии
         header("Location: /");
         exit;
     }
 }
+
 ?>
 
 <html>
@@ -66,7 +48,7 @@ if ($figureSelectedId) {
           //если выделена фигура и находимся на клетке на которой нет другой фигуры, то делаем ссылку для перемещения нашей фигуры
           if (!$tdFigureExists && $figureSelectedId) :?>
               <a href="index.php?action=move&figureSelectedId=<?php echo $figureSelectedId?>&x=<?php echo $i ?>&y=<?php echo $j ?>">
-                  <div><img class="pu" src=<?php echo $pu?>></div>
+                  <div><img class="pu" src='img/pustaya.png'></div>
               </a>
           <?php endif;?>
         </td>
